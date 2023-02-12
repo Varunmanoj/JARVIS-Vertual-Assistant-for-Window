@@ -23,7 +23,7 @@ import psutil  # Fetch Battery Information
 
 
 # Global Variables
-botname = "JARVIS"
+botname = "WARREN"
 
 
 # GUI Components
@@ -61,7 +61,7 @@ def TakUserInput():
         winsound.PlaySound('sound\Speech On.wav', winsound.SND_ASYNC)
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(mic, 0.2)
-        audio = r.listen(source=mic, timeout=1, phrase_time_limit=60)
+        audio = r.listen(source=mic, timeout=1, phrase_time_limit=10)
         try:
             if CheckInternet():
                 winsound.PlaySound(
@@ -76,6 +76,11 @@ def TakUserInput():
             SpeakOutput("Say that again")
             return "none"
     return UserQuery
+
+
+def GetUserLogin_Username():
+    # Get User Login Name
+    return os.getlogin()
 
 
 def Greetings():
@@ -195,7 +200,7 @@ def SendWhatsAppMessage():
         SpeakOutput("Enter Phone Number with Country Code")
         phoneno = input("Enter Phone Number with Country Code")
 
-        SpeakOutput("Speek the Message that you want to send")
+        SpeakOutput("Speak the Message that you want to send")
         message = TakUserInput()
 
         pywhatkit.sendwhatmsg_instantly(phoneno, message)
@@ -346,6 +351,15 @@ def BatteryLevel():
     SpeakOutput("Your Computer is at "+str(Battery.percent)+" %")
 
 
+def MyName():
+    username = GetUserLogin_Username()
+    SpeakOutput("I am talking to "+username)
+
+
+def Yourname():
+    SpeakOutput("My Name is "+botname)
+
+
 Greetings()
 
 
@@ -398,6 +412,10 @@ while True:
 
     elif "time" in query:
         FetchTime()
+    elif "your name" in query:
+        Yourname()
+    elif "my name" in query:
+        MyName()
 
     elif "no thinks " in query or "no" in query:
         SpeakOutput("Thank You for using "+botname+" Have a good day")

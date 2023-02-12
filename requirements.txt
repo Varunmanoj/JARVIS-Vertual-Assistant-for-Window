@@ -1,6 +1,8 @@
 pyttsx3
-speech_recognition
-cv2
+SpeechRecognition
+opencv-python
 wikipedia
 pywhatkit
 psutil
+PyAudio
+nltk
