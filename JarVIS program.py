@@ -20,6 +20,8 @@ try:
 except Exception as e:
     print("Import Failed")
 import psutil  # Fetch Battery Information
+import nltk
+from nltk.chat.util import Chat, reflections
 
 
 # Global Variables
@@ -146,6 +148,11 @@ def OpenChome():
     path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     os.startfile(path)
 
+
+def OpenWord():
+    path = "C:\Program Files\Microsoft Office\root\Office16\\WINWORD.exe"
+    os.startfile(path)
+
 # Get info form Internet
 
 
@@ -231,94 +238,97 @@ def FetchYear():
 def FetchMonth():
     current_time = datetime.datetime.now()
     month = current_time.month
-    if month == 1:
-        SpeakOutput("The Current Month is January")
-    elif month == 2:
-        SpeakOutput("The Current Month is February")
-    elif month == 3:
-        SpeakOutput("The Current Month is March")
-    elif month == 4:
-        SpeakOutput("The Current Month is April")
-    elif month == 5:
-        SpeakOutput("The Current Month is May")
-    elif month == 6:
-        SpeakOutput("The Current Month is June")
-    elif month == 7:
-        SpeakOutput("The Current Month is July")
-    elif month == 8:
-        SpeakOutput("The Current Month is Augest")
-    elif month == 9:
-        SpeakOutput("The Current Month is September")
-    elif month == 10:
-        SpeakOutput("The Current Month is October")
-    elif month == 11:
-        SpeakOutput("The Current Month is November")
-    elif month == 12:
-        SpeakOutput("The Current Month is Descember")
+    match month:
+        case 1:
+         SpeakOutput("The Current Month is January")
+        case 2:
+            SpeakOutput("The Current Month is February")
+        case 3:
+            SpeakOutput("The Current Month is March")
+        case 4:
+            SpeakOutput("The Current Month is April")
+        case 5:
+            SpeakOutput("The Current Month is May")
+        case 6:
+            SpeakOutput("The Current Month is June")
+        case 7:
+            SpeakOutput("The Current Month is July")
+        case 8:
+            SpeakOutput("The Current Month is Augest")
+        case 9:
+            SpeakOutput("The Current Month is September")
+        case 10:
+            SpeakOutput("The Current Month is October")
+        case 11:
+            SpeakOutput("The Current Month is November")
+        case 12:
+            SpeakOutput("The Current Month is Descember")
 
 
 def FetchDay():
     weekday = datetime.datetime.now().weekday()
-    if weekday == 0:
-        SpeakOutput("Today is is Monday")
-    elif weekday == 1:
-        SpeakOutput("Today is Tuesday")
-    elif weekday == 2:
-        SpeakOutput("Today is Wednessday")
-    elif weekday == 3:
-        SpeakOutput("Today is Thirsday")
-    elif weekday == 4:
-        SpeakOutput("Today is Friday")
-    elif weekday == 5:
-        SpeakOutput("Today is Saturday")
-    elif weekday == 6:
-        SpeakOutput("Today is Sunday")
+    match weekday:
+        case 0:
+            SpeakOutput("Today is is Monday")
+        case 1:
+            SpeakOutput("Today is Tuesday")
+        case 2:
+            SpeakOutput("Today is Wednessday")
+        case 3:
+            SpeakOutput("Today is Thirsday")
+        case 4:
+            SpeakOutput("Today is Friday")
+        case 5:
+            SpeakOutput("Today is Saturday")
+        case 6:
+            SpeakOutput("Today is Sunday")
 
 
 def Extract_Day_Of_Week_From_Day(day):
     day = day.weekday()
-    if day == 0:
-        return "Monday"
-    elif day == 1:
-        return "Tuesday"
-    elif day == 2:
-        return "Wednessday"
-    elif day == 3:
-        return "Thursday"
-    elif day == 4:
-        return "Friday"
-    elif day == 5:
-        return "Saturday"
-    elif day == 6:
-        return "Sunday"
+    match day:
+        case 0:
+            return "Monday"
+        case 1:
+            return "Tuesday"
+        case 2:
+            return "Wednessday"
+        case 3:
+            return "Thursday"
+        case 4:
+            return "Friday"
+        case 5:
+            return "Saturday"
+        case 6:
+            return "Sunday"
 
 
 def Extract_Month_of_the_Year(month):
-
-    if month == 1:
-        return "January"
-    elif month == 2:
-        return "February"
-    elif month == 3:
-        return "March"
-    elif month == 4:
-        return "April"
-    elif month == 5:
-        return "May"
-    elif month == 6:
-        return "June"
-    elif month == 7:
-        return "July"
-    elif month == 8:
-        return "August"
-    elif month == 9:
-        return "September"
-    elif month == 10:
-        return "October"
-    elif month == 11:
-        return "November"
-    elif month == 12:
-        return "Descember"
+    match month:
+        case 1:
+            return "January"
+        case 2:
+            return "February"
+        case 3:
+            return "March"
+        case 4:
+            return "April"
+        case 5:
+            return "May"
+        case 6:
+            return "June"
+        case 7:
+            return "July"
+        case 8:
+            return "August"
+        case 9:
+            return "September"
+        case 10:
+            return "October"
+        case 11:
+            return "November"
+        case 12:
+            return "Descember"
 
 
 def FetchDate():
@@ -389,6 +399,9 @@ while True:
     elif "youtube" in query:
         SpeakOutput("Sure Opening YouTube")
         OpenYouTube()
+    #elif "word" in query:
+     #   SpeakOutput("Sure Opening Microsoft Word")
+      #  OpenWord()
     elif "amazon" in query:
         SpeakOutput("Sure Opening Amazon India")
         OpenAmazon()
@@ -417,7 +430,7 @@ while True:
     elif "my name" in query:
         MyName()
 
-    elif "no thinks " in query or "no" in query:
+    elif "no thanks " in query or "no" in query:
         SpeakOutput("Thank You for using "+botname+" Have a good day")
         sys.exit()
     SpeakOutput("Do you have any other question...")
