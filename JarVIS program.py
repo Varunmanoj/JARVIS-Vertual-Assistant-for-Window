@@ -368,69 +368,110 @@ def MyName():
 
 def Yourname():
     SpeakOutput("My Name is "+botname)
+    
+def responses():
+    query = TakUserInput().lower()
+    if "command prompt" in query or "cmd" in query:
+        OpenCMD()
+        return 'cmd'
+    elif "google chrome" in query or "chrome" in query:
+        OpenChome()
+        return 'chrome'
+    elif "camera" in query:
+        TakePhoto()
+        return 'camera'
+    elif "what is my ip" in query or "ip" in query:
+        GetSystemIPAddress()
+        return 'ip'
+    elif "wikipedia" in query:
+        Searchwikipedia(query=query)
+        return 'wiki'
+    elif "youtube" in query:
+        OpenYouTube()
+        return 'youtube'
+    elif "amazon" in query:
+        OpenAmazon()
+        return 'amazon'
+    elif "google" in query:
+        GoogleSearch()
+        return 'google'
+    elif "whatsapp" in query:
+        SendWhatsAppMessage()
+        return 'whatsapp'
+    elif "online video" in query:
+        PlayVidoesOnYouTube()
+        return 'video'
+
+    elif "what day is today" in query:
+        FetchDay()
+        return 'day'
+    elif "month" in query:
+        FetchMonth()
+        return 'month'
+    elif "year" in query:
+        FetchYear()
+        return 'year'
+    elif "date" in query:
+        FetchDate()
+        return 'date'
+    elif "battery" in query:
+        BatteryLevel()
+        return 'battery'
+
+    elif "time" in query:
+        FetchTime()
+        return 'time'
+    elif "your name" in query:
+        Yourname()
+        return 'your name'
+    elif "my name" in query:
+        MyName()
+        return 'my name'
+
+    elif "no thanks " in query or "no" in query:
+        return 'exit'
+    else:
+        return query
+        
+pairs = [
+    [
+        r"my name is (.*)",
+        ["Hello %1, how are you today?"]
+    ],
+    [
+        r"hi|hello|hey",
+        ["Hello!", "Hi there!"]
+    ],
+    [
+        r"how are you",
+        ["I'm doing well, thank you for asking."]
+    ],
+    [
+        r"what is your name",
+        ["My name is Chatbot, how can I help you today?"]
+    ],
+    [
+        r"quit",
+        ["Bye!"]
+    ]
+]
+
+chatbot = Chat(pairs, reflections)
+
 
 
 Greetings()
 
 
+
 while True:
-    query = TakUserInput().lower()
-    if "command prompt" in query or "cmd" in query:
-        SpeakOutput("Sure")
-        OpenCMD()
-    elif "cmd" in query:
-        SpeakOutput("Sure")
-        OpenCMD()
-
-    elif "google chrome" in query:
-        SpeakOutput("Sure")
-        OpenChome()
-    elif "chrome" in query:
-        SpeakOutput("Sure")
-        OpenChome()
-    elif "camera" in query:
-        SpeakOutput("Sure Press ESC to close and Space to Capture")
-        TakePhoto()
-    elif "what is my ip" in query:
-        SpeakOutput("Sure")
-        GetSystemIPAddress()
-    elif "wikipedia" in query:
-        Searchwikipedia(query=query)
-    elif "youtube" in query:
-        SpeakOutput("Sure Opening YouTube")
-        OpenYouTube()
-    #elif "word" in query:
-     #   SpeakOutput("Sure Opening Microsoft Word")
-      #  OpenWord()
-    elif "amazon" in query:
-        SpeakOutput("Sure Opening Amazon India")
-        OpenAmazon()
-    elif "google" in query:
-        GoogleSearch()
-    elif "whatsapp" in query:
-        SendWhatsAppMessage()
-    elif "online video" in query:
-        PlayVidoesOnYouTube()
-
-    elif "what day is today" in query:
-        FetchDay()
-    elif "month" in query:
-        FetchMonth()
-    elif "year" in query:
-        FetchYear()
-    elif "date" in query:
-        FetchDate()
-    elif "battery" in query:
-        BatteryLevel()
-
-    elif "time" in query:
-        FetchTime()
-    elif "your name" in query:
-        Yourname()
-    elif "my name" in query:
-        MyName()
-
-    elif "no thanks " in query or "no" in query:
+    text = response()
+    if text.lower() == 'exit':
         SpeakOutput("Thank You for using "+botname+" Have a good day")
+        break
         sys.exit()
+    response = chatbot.respond(text)
+    print(response)
+    SpeakOutput(response)
+    
     SpeakOutput("Do you have any other question...")
