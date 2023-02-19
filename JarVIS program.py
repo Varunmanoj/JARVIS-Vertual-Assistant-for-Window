@@ -439,8 +439,20 @@ pairs = [
         ["Hello %1, how are you today?"]
     ],
     [
+        r"cmd",
+        ["Opening Command prompt!"]
+     ],
+    [   
+        r"chrome",
+        ["Opening Google Chrome!"]
+     ],
+    [
+        r"camera|wiki|amazon|ip|youtube|google|month|day|date|battery|whatsapp|video",
+        [""]
+     ],
+    [
         r"hi|hello|hey",
-        ["Hello!", "Hi there!"]
+        ["Hello! "+os.getlogin, "Hi there! "+os.getlogin]
     ],
     [
         r"how are you",
@@ -448,12 +460,49 @@ pairs = [
     ],
     [
         r"what is your name",
-        ["My name is Chatbot, how can I help you today?"]
+        ["My name is "+botname+", how can I help you today?"]
     ],
     [
         r"quit",
-        ["Bye!"]
+        ["Thank You for using"+botname+". Have a nice day!"]
     ]
+    [
+        r"I am sleepy|I am tired|I am bored|I am exhausted",
+        ["You should take a short rest!"]
+    ]
+    [
+        r"I am happy|I am joyful|joy|",
+        ["Thats great!"]
+    ]
+    [
+        r"favourite movie|movie you enjoy|movies you like|movie you like|like any movie",
+        ["I don't watch any movie but I would say the Godfather!"]
+    ]
+    [
+        r"coffee|tea|drink",
+        ["I enjoy drinking herbal tea!"]
+    ]
+    [
+        r"sweet|sweets|chocolate",
+        ["Though too many sweets may not be good for health, it is ok to have them once in a while. I like Dairy Milk chocolates"]
+    ]
+    [
+        r"favourite music|music you enjoy|music you like|music you like|like any music",
+        ["Though I am just an AI, I enjoy Pop music!!!"]
+    ]
+    [
+        r"animal",
+        ["I love playing with dogs but even cats are cute"]
+    ]
+    [
+        r"father|mother|brother|sister|sibling|siblings|parent|parents|cousin|family|relative",
+        ["As I am an AI, I dont have any relatives."]
+    ]
+    [
+        r"favourite sport|sports you enjoy|sport you like|like any sport",
+        ["I enjoy watching hockey matches!"]
+    ]
+    
 ]
 
 chatbot = Chat(pairs, reflections)
@@ -465,11 +514,14 @@ Greetings()
 
 
 while True:
-    text = response()
+    text = responses()
     if text.lower() == 'exit':
-        SpeakOutput("Thank You for using "+botname+" Have a good day")
+        response = chatbot.respond(text)
+        print(response)
+        SpeakOutput(response)
         break
         sys.exit()
+        
     response = chatbot.respond(text)
     print(response)
     SpeakOutput(response)
