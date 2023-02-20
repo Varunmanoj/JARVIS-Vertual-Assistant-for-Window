@@ -25,7 +25,7 @@ from nltk.chat.util import Chat, reflections
 
 
 # Global Variables
-botname = "WARREN"
+botname = "JARVIS"
 
 
 # GUI Components
@@ -428,10 +428,15 @@ def responses():
         MyName()
         return 'my name'
 
-    elif "no thanks " in query or "no" in query:
+    elif "no thanks " in query or "no" in query or "goodbye":
         return 'exit'
     else:
         return query
+    
+greeting_1 = "My name is "+botname+", how can I help you today?"
+farewell = "Thank You for using "+botname+". Have a nice day!"
+greeting_2 = "Hello! "+  str(os.getlogin)
+greeting_3 = "Hi there! " + str(os.getlogin)
         
 pairs = [
     [
@@ -451,55 +456,55 @@ pairs = [
         [""]
      ],
     [
-        r"hi|hello|hey",
-        ["Hello! "+os.getlogin, "Hi there! "+os.getlogin]
+        r"hi  (.*)|hello  (.*)|hey  (.*)",
+        [greeting_2, greeting_3 ]
     ],
     [
-        r"how are you",
+        r"how are you  (.*)",
         ["I'm doing well, thank you for asking."]
     ],
     [
         r"what is your name",
-        ["My name is "+botname+", how can I help you today?"]
+        [greeting_1]
     ],
     [
-        r"quit",
-        ["Thank You for using"+botname+". Have a nice day!"]
-    ]
+        r"exit",
+        [farewell]
+    ],
     [
-        r"I am sleepy|I am tired|I am bored|I am exhausted",
+        r"I am sleepy  (.*)|I am tired  (.*)|I am bored  (.*)|I am exhausted  (.*)",
         ["You should take a short rest!"]
-    ]
+    ],
     [
-        r"I am happy|I am joyful|joy|",
+        r"I am happy|I am joyful|joy",
         ["Thats great!"]
-    ]
+    ],
     [
-        r"favourite movie|movie you enjoy|movies you like|movie you like|like any movie",
+        r"(.*) favourite movie|movie you enjoy(.*) |(.*) movies you like|(.*) movie you like|(.*) like any movie",
         ["I don't watch any movie but I would say the Godfather!"]
-    ]
+    ],
     [
-        r"coffee|tea|drink",
+        r"(.*) coffee|(.*) tea|(.*) drink",
         ["I enjoy drinking herbal tea!"]
-    ]
+    ],
     [
-        r"sweet|sweets|chocolate",
+        r"(.*) sweet|(.*) sweets|(.*) chocolate",
         ["Though too many sweets may not be good for health, it is ok to have them once in a while. I like Dairy Milk chocolates"]
-    ]
+    ],
     [
-        r"favourite music|music you enjoy|music you like|music you like|like any music",
+        r"(.*) favourite music|(.*) music you enjoy|(.*) music you like|(.*) like any music",
         ["Though I am just an AI, I enjoy Pop music!!!"]
-    ]
+    ],
     [
-        r"animal",
+        r"(.*) animal",
         ["I love playing with dogs but even cats are cute"]
-    ]
+    ],
     [
-        r"father|mother|brother|sister|sibling|siblings|parent|parents|cousin|family|relative",
+        r"(.*) father|(.*) mother|(.*) brother|(.*) sister|(.*) sibling|(.*) siblings|(.*) parent|(.*) parents|(.*) cousin|(.*) family|(.*) relative",
         ["As I am an AI, I dont have any relatives."]
-    ]
+    ],
     [
-        r"favourite sport|sports you enjoy|sport you like|like any sport",
+        r"(.*) favourite sport|(.*) sports you enjoy|(.*) sport you like|(.*) like any sport",
         ["I enjoy watching hockey matches!"]
     ]
     
@@ -517,13 +522,13 @@ while True:
     text = responses()
     if text.lower() == 'exit':
         response = chatbot.respond(text)
-        print(response)
+        #print(response)
         SpeakOutput(response)
         break
         sys.exit()
         
     response = chatbot.respond(text)
-    print(response)
+    #print(response)
     SpeakOutput(response)
     
     SpeakOutput("Do you have any other question...")
