@@ -91,13 +91,13 @@ def Greetings():
 
     if (hour >= 8 and hour < 12):
         SpeakOutput("Good Morning "+os.getlogin())
-        print("Good Morning "+os.getlogin())
+        #print("Good Morning "+os.getlogin())
     elif (hour >= 12 and hour < 18):
         SpeakOutput("Good Afternoon "+os.getlogin())
-        print("Good Afternoon "+os.getlogin())
+        #print("Good Afternoon "+os.getlogin())
     else:
         SpeakOutput("Good Evening "+os.getlogin())
-        print("Good Evening "+os.getlogin())
+        #print("Good Evening "+os.getlogin())
     SpeakOutput("I am "+botname+" How may I help you")
 
 
