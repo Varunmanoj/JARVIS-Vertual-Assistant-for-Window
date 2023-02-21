@@ -529,6 +529,5 @@ while True:
         
     response = chatbot.respond(text)
     #print(response)
-    SpeakOutput(response)
-    
+    SpeakOutput(response)    
     SpeakOutput("Do you have any other question...")
