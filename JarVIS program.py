@@ -20,7 +20,7 @@ try:
 except Exception as e:
     print("Import Failed")
 import psutil  # Fetch Battery Information
-import nltk
+import nltk  # For Implimenting Natural language Processing
 from nltk.chat.util import Chat, reflections
 
 
@@ -372,7 +372,7 @@ def responses():
     elif "google chrome" in query or "chrome" in query:
         OpenChome()
         return 'chrome'
-    elif "camera" in query:
+    elif "camera" in query or "take photo" in query:
         TakePhoto()
         return 'camera'
     elif "what is my ip" in query or "ip" in query:
