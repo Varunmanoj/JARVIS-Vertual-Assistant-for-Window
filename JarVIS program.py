@@ -20,7 +20,7 @@ try:
 except Exception as e:
     print("Import Failed")
 import psutil  # Fetch Battery Information
-import nltk
+import nltk     #For natural language processing
 from nltk.chat.util import Chat, reflections
 
 
@@ -428,7 +428,7 @@ def responses():
         MyName()
         return 'my name'
 
-    elif "no thanks " in query or "no" in query or "goodbye":
+    elif "no thanks " in query or "no" in query or "goodbye" in query:
         return 'exit'
     else:
         return query
