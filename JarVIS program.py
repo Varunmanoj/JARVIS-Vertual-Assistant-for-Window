@@ -205,8 +205,6 @@ def SendWhatsAppMessage():
         message = TakUserInput()
 
         pywhatkit.sendwhatmsg_instantly(phoneno, message)
-        print("Message Sent")
-        SpeakOutput(message+" was sent Successfully to "+phoneno)
     else:
         SpeakOutput("Sorry! There is no Internet")
 
