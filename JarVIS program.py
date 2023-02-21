@@ -27,12 +27,6 @@ from nltk.chat.util import Chat, reflections
 # Global Variables
 botname = "JARVIS"
 
-
-# GUI Components
-#
-# Adapts for Light and Dark Mode in System
-
-
 # initialize tts engine
 engine = pyttsx3.init()
 
