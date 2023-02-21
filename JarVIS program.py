@@ -240,7 +240,7 @@ def FetchMonth():
     month = current_time.month
     match month:
         case 1:
-         SpeakOutput("The Current Month is January")
+            SpeakOutput("The Current Month is January")
         case 2:
             SpeakOutput("The Current Month is February")
         case 3:
@@ -368,7 +368,8 @@ def MyName():
 
 def Yourname():
     SpeakOutput("My Name is "+botname)
-    
+
+
 def responses():
     query = TakUserInput().lower()
     if "command prompt" in query or "cmd" in query:
@@ -432,12 +433,13 @@ def responses():
         return 'exit'
     else:
         return query
-    
+
+
 greeting_1 = "My name is "+botname+", how can I help you today?"
 farewell = "Thank You for using "+botname+". Have a nice day!"
-greeting_2 = "Hello! "+  str(os.getlogin)
+greeting_2 = "Hello! " + str(os.getlogin)
 greeting_3 = "Hi there! " + str(os.getlogin)
-        
+
 pairs = [
     [
         r"my name is (.*)",
@@ -446,18 +448,18 @@ pairs = [
     [
         r"cmd",
         ["Opening Command prompt!"]
-     ],
-    [   
+    ],
+    [
         r"chrome",
         ["Opening Google Chrome!"]
-     ],
+    ],
     [
         r"camera|wiki|amazon|ip|youtube|google|month|day|date|battery|whatsapp|video",
         [""]
-     ],
+    ],
     [
         r"hi  (.*)|hello  (.*)|hey  (.*)",
-        [greeting_2, greeting_3 ]
+        [greeting_2, greeting_3]
     ],
     [
         r"how are you  (.*)",
@@ -507,28 +509,26 @@ pairs = [
         r"(.*) favourite sport|(.*) sports you enjoy|(.*) sport you like|(.*) like any sport",
         ["I enjoy watching hockey matches!"]
     ]
-    
+
 ]
 
 chatbot = Chat(pairs, reflections)
 
 
-
 Greetings()
-
 
 
 while True:
     text = responses()
     if text.lower() == 'exit':
         response = chatbot.respond(text)
-        #print(response)
+        # print(response)
         SpeakOutput(response)
         break
         sys.exit()
-        
+
     response = chatbot.respond(text)
-    #print(response)
+    # print(response)
     SpeakOutput(response)
-    
+
     SpeakOutput("Do you have any other question...")
